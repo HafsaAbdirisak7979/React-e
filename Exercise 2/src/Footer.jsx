@@ -1,7 +1,7 @@
-const  Footer= () => {
+const  Footer = () => {
   return (
     <>
-    <Footer><p>© 2025 My Blog</p></Footer>
+    <footer><p>© 2025 My Blog</p></footer>
     </>
   );
 };

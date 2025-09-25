@@ -4,9 +4,11 @@ import Post from "./Post";
 const Blog = () => {
   return (
     <div>
-        <Header />
-        <Post />
-        <Footer />
+         <Header />
+        
+        <Post/>
+        <Footer/>
+      
     </div>
   );
 }
