@@ -13,7 +13,6 @@ const Countdown = () => {
       }, 1000);
     }
 
-    // Cleanup: clear interval
     return () => clearInterval(timerId);
   }, [isRunning, timeLeft]);
 
