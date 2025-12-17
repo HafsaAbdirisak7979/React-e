@@ -1,0 +1,473 @@
+/* App.css - WhatsApp-inspired Todo List */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --whatsapp-green: #1dcd58;
+  --whatsapp-dark-green: #128C7E;
+  --whatsapp-light-green: #DCF8C6;
+  --whatsapp-blue: #34B7F1;
+  --whatsapp-gray: #ECE5DD;
+  --whatsapp-dark-gray: #667781;
+  --whatsapp-white: #FFFFFF;
+  --whatsapp-black: #0C1317;
+  --whatsapp-bg: #111B21;
+  --shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --radius: 8px;
+  --radius-full: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ced7d5 0%, #5f8276 100%);
+  color: var(--whatsapp-white);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.todo-container {
+  background: var(--whatsapp-bg);
+  border-radius: var(--radius-full);
+  width: 100%;
+  max-width: 500px;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header */
+.header {
+  background: var(--whatsapp-dark-green);
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-icon-circle {
+  width: 40px;
+  height: 40px;
+  background: var(--whatsapp-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+/* Input Section */
+.input-section {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.todo-input {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: var(--whatsapp-green);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+}
+
+.todo-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input-hint {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+.add-btn {
+  padding: 0 25px;
+  background: var(--whatsapp-green);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  background: #1ebc5a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.plus-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Todos Section */
+.todos-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--whatsapp-green);
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+}
+
+.todo-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.todo-item.completed {
+  opacity: 0.7;
+  border-left-color: var(--whatsapp-dark-gray);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.checkbox-btn {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-btn:hover {
+  border-color: var(--whatsapp-green);
+  background: rgba(37, 211, 102, 0.1);
+}
+
+.checkbox-btn.checked {
+  background: var(--whatsapp-green);
+  border-color: var(--whatsapp-green);
+}
+
+.todo-text {
+  font-size: 16px;
+  color: white;
+  flex: 1;
+  word-break: break-word;
+  padding-right: 10px;
+}
+
+.todo-text.completed-text {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Edit Input */
+.edit-input-wrapper {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--whatsapp-green);
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-family: inherit;
+}
+
+.edit-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-btn {
+  background: var(--whatsapp-green);
+  color: white;
+}
+
+.save-btn:hover {
+  background: #1ebc5a;
+}
+
+.cancel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Todo Actions */
+.todo-actions {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.edit-btn, .delete-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.edit-btn:hover {
+  background: var(--whatsapp-blue);
+  transform: scale(1.1);
+}
+
+.delete-btn:hover {
+  background: #ff4444;
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer-actions {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat strong {
+  color: white;
+  margin-left: 4px;
+}
+
+.clear-btn {
+  padding: 8px 16px;
+  background: rgba(255, 68, 68, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 68, 68, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Scrollbar */
+.todos-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.todos-section::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.todos-section::-webkit-scrollbar-thumb {
+  background: var(--whatsapp-dark-green);
+  border-radius: 3px;
+}
+
+.todos-section::-webkit-scrollbar-thumb:hover {
+  background: var(--whatsapp-green);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .todo-container {
+    height: 90vh;
+    min-height: 500px;
+    border-radius: 0;
+  }
+  
+  .footer-actions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .stats {
+    justify-content: space-between;
+  }
+  
+  .clear-btn {
+    width: 100%;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .add-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .input-hint {
+    display: none;
+  }
+}
